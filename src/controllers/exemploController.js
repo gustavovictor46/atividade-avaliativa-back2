@@ -6,16 +6,13 @@ export const criar = async (req, res) => {
             return res.status(400).json({ error: 'Corpo da requisição vazio. Envie os dados!' });
         }
 
-        const { nome, estado, preco } = req.body;
+        const { nome} = req.body;
 
         if (!nome){
             return res.status(400).json({ error: 'O campo "nome" é obrigatório!' });
         }
-        if (preco === undefined || preco === null) {
-            return res.status(400).json({ error: 'O campo "preco" é obrigatório!' });
-        }
 
-        const exemplo = new ExemploModel({ nome, estado, preco: parseFloat(preco) });
+        const exemplo = new ExemploModel({ nome });
         const data = await exemplo.criar();
 
         return res.status(201).json({ message: 'Registro criado com sucesso!', data });
@@ -82,12 +79,7 @@ export const atualizar = async (req, res) => {
         if (req.body.nome !== undefined) {
             exemplo.nome = req.body.nome;
         }
-        if (req.body.estado !== undefined) {
-            exemplo.estado = req.body.estado;
-        }
-        if (req.body.preco !== undefined) {
-            exemplo.preco = parseFloat(req.body.preco);
-        }
+    
 
         const data = await exemplo.atualizar();
 
