@@ -14,7 +14,6 @@ app.get('/', (req, res) => {
 });
 
 // Rotas
-app.use('/api/exemplos', exemplosRoutes);
 app.use('/api/exemplos', apiKey, exemplosRoutes);
 app.use('/api/exemplos', apiKey, arquivoRoutes);
 
